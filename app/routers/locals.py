@@ -25,7 +25,7 @@ def _local_to_out(local: models.Local) -> schemas.LocalOut:
         localCategoryId=local.local_category_id,
         created_at=local.created_at,
         updated_at=local.updated_at,
-        photos=[p.url for p in local.photos],
+        photoUrls=[p.url for p in local.photos],
     )
 
 def _check_owner(local: models.Local, current_user: CurrentUser):
