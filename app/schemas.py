@@ -15,22 +15,22 @@ class LocalCategoryOut(BaseModel):
 # ---------- Local ----------
 
 class LocalBase(BaseModel):
-    local_name: str
-    description: Optional[str] = None
+    localName: str
+    descriptionMessage: Optional[str] = None
     country: str
     city: str
     district: str
     street: str
-    price_per_hour: int
-    capacity: int
+    price: str
+    capacity: str
     features: Optional[str] = None
-    local_category_id: int
+    localCategoryId: int
 
 class LocalCreate(LocalBase):
-    photo_urls: Optional[List[str]] = None  # para crear LocalPhoto
+    photoUrls: Optional[List[str]] = None  # para crear LocalPhoto
 
 class LocalUpdate(BaseModel):
-    local_name: Optional[str] = None
+    localName: Optional[str] = None
     description: Optional[str] = None
     country: Optional[str] = None
     city: Optional[str] = None
@@ -39,15 +39,15 @@ class LocalUpdate(BaseModel):
     price_per_hour: Optional[int] = None
     capacity: Optional[int] = None
     features: Optional[str] = None
-    local_category_id: Optional[int] = None
+    localCategoryId: Optional[int] = None
     photo_urls: Optional[List[str]] = None
 
 class LocalOut(LocalBase):
     id: int
-    user_id: int
+    userId: int
     created_at: datetime
     updated_at: datetime
-    photos: List[str]
+    photoUrls: List[str]
 
     class Config:
         orm_mode = True

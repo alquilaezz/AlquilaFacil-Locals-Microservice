@@ -12,17 +12,17 @@ router = APIRouter(prefix="/api/v1/locals", tags=["Locals"])
 def _local_to_out(local: models.Local) -> schemas.LocalOut:
     return schemas.LocalOut(
         id=local.id,
-        user_id=local.user_id,
-        local_name=local.local_name,
-        description=local.description,
+        userId=local.userId,
+        localName=local.localName,
+        descriptionMessage=local.descriptionMessage,
         country=local.country,
         city=local.city,
         district=local.district,
         street=local.street,
-        price_per_hour=local.price_per_hour,
+        price=local.price,
         capacity=local.capacity,
         features=local.features,
-        local_category_id=local.local_category_id,
+        localCategoryId=local.localCategoryId,
         created_at=local.created_at,
         updated_at=local.updated_at,
         photos=[p.url for p in local.photos],
@@ -50,17 +50,17 @@ def create_local(
         raise HTTPException(status_code=404, detail="Local category not found")
 
     local = models.Local(
-        local_name=payload.local_name,
-        description=payload.description,
+        localName=payload.local_name,
+        descriptionMessage=payload.descriptionMessage,
         country=payload.country,
         city=payload.city,
         district=payload.district,
         street=payload.street,
-        price_per_hour=payload.price_per_hour,
+        price=payload.price,
         capacity=payload.capacity,
         features=payload.features,
-        local_category_id=payload.local_category_id,
-        user_id=current_user.id,
+        localCategoryId=payload.localCategoryId,
+        userId=current_user.id,
     )
 
     db.add(local)
