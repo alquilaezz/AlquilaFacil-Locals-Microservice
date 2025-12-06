@@ -50,17 +50,17 @@ def create_local(
         raise HTTPException(status_code=404, detail="Local category not found")
 
     local = models.Local(
-        localName=payload.localName,
-        descriptionMessage=payload.descriptionMessage,
+        local_name=payload.localName,
+        description=payload.descriptionMessage,
         country=payload.country,
         city=payload.city,
         district=payload.district,
         street=payload.street,
-        price=payload.price,
+        price_per_hour=payload.price,
         capacity=payload.capacity,
         features=payload.features,
-        localCategoryId=payload.localCategoryId,
-        userId=current_user.id,
+        local_category_id=payload.localCategoryId,
+        user_id=current_user.id,
     )
 
     db.add(local)
