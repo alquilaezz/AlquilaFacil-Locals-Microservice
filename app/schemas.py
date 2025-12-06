@@ -21,8 +21,8 @@ class LocalBase(BaseModel):
     city: str
     district: str
     street: str
-    price: str
-    capacity: str
+    price: int
+    capacity: int
     features: Optional[str] = None
     localCategoryId: int
 
