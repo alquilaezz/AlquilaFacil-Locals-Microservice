@@ -22,17 +22,17 @@ class Local(Base):
     __tablename__ = "locals"
 
     id = Column(Integer, primary_key=True, index=True)
-    localName = Column(Text, nullable=False)
-    descriptionMessage = Column(Text, nullable=True)
+    local_name = Column(Text, nullable=False)
+    description = Column(Text, nullable=True)
     country = Column(Text, nullable=False)
     city = Column(Text, nullable=False)
     district = Column(Text, nullable=False)
     street = Column(Text, nullable=False)
-    price = Column(Integer, nullable=False)
+    price_per_hour = Column(Integer, nullable=False)
     capacity = Column(Integer, nullable=False)
     features = Column(Text, nullable=True)  # puedes guardar JSON o texto plano
-    localCategoryId = Column(Integer, ForeignKey("local_categories.id"), nullable=False)
-    userId = Column(Integer, nullable=False, index=True)
+    local_category_id = Column(Integer, ForeignKey("local_categories.id"), nullable=False)
+    user_id = Column(Integer, nullable=False, index=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 

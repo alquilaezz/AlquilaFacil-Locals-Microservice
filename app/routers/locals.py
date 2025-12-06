@@ -12,17 +12,17 @@ router = APIRouter(prefix="/api/v1/locals", tags=["Locals"])
 def _local_to_out(local: models.Local) -> schemas.LocalOut:
     return schemas.LocalOut(
         id=local.id,
-        userId=local.userId,
-        localName=local.localName,
-        descriptionMessage=local.descriptionMessage,
+        userId=local.user_id,
+        localName=local.local_name,
+        descriptionMessage=local.description,
         country=local.country,
         city=local.city,
         district=local.district,
         street=local.street,
-        price=local.price,
+        price=local.price_per_hour,
         capacity=local.capacity,
         features=local.features,
-        localCategoryId=local.localCategoryId,
+        localCategoryId=local.local_category_id,
         created_at=local.created_at,
         updated_at=local.updated_at,
         photos=[p.url for p in local.photos],
@@ -43,14 +43,14 @@ def create_local(
     # (opcional) validar que exista la categoría
     category = (
         db.query(models.LocalCategory)
-        .filter(models.LocalCategory.id == payload.local_category_id)
+        .filter(models.LocalCategory.id == payload.localCategoryId)
         .first()
     )
     if not category:
         raise HTTPException(status_code=404, detail="Local category not found")
 
     local = models.Local(
-        localName=payload.local_name,
+        localName=payload.localName,
         descriptionMessage=payload.descriptionMessage,
         country=payload.country,
         city=payload.city,
@@ -67,8 +67,8 @@ def create_local(
     db.flush()  # para tener el id antes del commit
 
     # fotos
-    if payload.photo_urls:
-        for url in payload.photo_urls:
+    if payload.photoUrls:
+        for url in payload.photoUrls:
             db.add(models.LocalPhoto(url=url, local_id=local.id))
 
     db.commit()
