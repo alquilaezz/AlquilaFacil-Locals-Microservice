@@ -14,10 +14,10 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,          # o ["*"] si quieres permitir todos (no recomendado para prod)
-    allow_credentials=True,
-    allow_methods=["*"],            # GET, POST, PUT, DELETE, etc.
-    allow_headers=["*"],            # "Content-Type", "Authorization", etc.
+    allow_origins=["*"],     # 👈 cualquier origen
+    allow_credentials=False, # 👈 importante: con "*" no uses credentials
+    allow_methods=["*"],     # todos los métodos
+    allow_headers=["*"],     # todos los headers
 )
 
 app.include_router(locals.router)
