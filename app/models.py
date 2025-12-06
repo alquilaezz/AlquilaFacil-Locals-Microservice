@@ -28,8 +28,8 @@ class Local(Base):
     city = Column(Text, nullable=False)
     district = Column(Text, nullable=False)
     street = Column(Text, nullable=False)
-    price_per_hour = Column(Integer, nullable=False)
-    capacity = Column(Integer, nullable=False)
+    price_per_hour = Column(Text, nullable=False)
+    capacity = Column(Text, nullable=False)
     features = Column(Text, nullable=True)  # puedes guardar JSON o texto plano
     local_category_id = Column(Integer, ForeignKey("local_categories.id"), nullable=False)
     user_id = Column(Integer, nullable=False, index=True)
